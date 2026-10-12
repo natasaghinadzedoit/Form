@@ -1,1 +1,72 @@
-<p>reactive-forms works!</p>
+<header>Reactive Forms</header>
+
+<div class="form-container">
+    <form [formGroup]="registerForm">
+        <label for="email">Email:</label>
+        <input type="email" id="reactive-email" formControlName="email" [class.invalid]="emailControl.invalid && (emailControl.dirty || emailControl.touched)"
+            [class.valid]="emailControl.valid && (emailControl.dirty || emailControl.touched)">
+        @if (emailControl.invalid && (emailControl.dirty || emailControl.touched)) {
+        <div class="error-message">
+            @if (emailControl.hasError('required')) {
+            <div>მეილის შეყვანა აუცილებელია</div>
+            }
+            @if (emailControl.hasError('email')) {
+            <div>gგთხოვთ შეიყვანოთ ვალიდური მეილი</div>
+            }
+        </div>
+        }
+        <label for="password">Password:</label>
+        <input type="password" id="reactive-password" formControlName="password" [class.invalid]="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)">
+        @if(passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)) {
+        <div class="error-message">
+            @if(passwordControl.hasError('required')) {
+            <div>პაროლის შეყვანა აუცილებელია</div>
+            }
+        </div>
+        }
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="reactive-confirmPassword" formControlName="confirmPassword"
+            [class.invalid]="confirmPasswordControl.invalid && (confirmPasswordControl.dirty || confirmPasswordControl.touched)"
+            [class.valid]="confirmPasswordControl.valid && (confirmPasswordControl.dirty || confirmPasswordControl.touched)">
+        @if (confirmPasswordControl.touched || confirmPasswordControl.dirty) {
+
+        @if (confirmPasswordControl.hasError('required')) {
+        <small class="error-message">
+            პაროლის დადასტურება აუცილებელია
+        </small>
+        }
+        @else if (confirmPasswordControl.hasError('minlength')) {
+        <small class="error-message">
+            პაროლი უნდა შეიცავდეს მინიმუმ 8 სიმბოლოს
+        </small>
+        }
+        @else if (registerForm.hasError('passwordMismatch')) {
+        <small class="error-message">
+            პაროლები არ ემთხვევა ერთმანეთს
+        </small>
+        }
+
+        }
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="reactive-nickname" formControlName="nickname">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="reactive-phone" formControlName="phone">
+        @if(phoneControl.invalid && (phoneControl.dirty || phoneControl.touched)) {
+        <div class="error-message">
+            @if(phoneControl.hasError('required')) {
+            <div>ტელეფონის შეყვანა აუცილებელია</div>
+            }
+        </div>
+        }
+        <label for="website">Website:</label>
+        <input type="url" id="reactive-website" formControlName="website">
+        <div>
+            <label for="confirm">Confirm:</label>
+            <input type="checkbox" id="reactive-confirm" formControlName="confirm">
+        </div>
+    </form>
+
+    <button type="button" (click)="register()">
+        Register
+    </button>
+</div>
