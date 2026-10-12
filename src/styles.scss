@@ -1,8 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
-form{
-    width: 400px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.form-container {
+  width: 400px;
+  margin: 30px auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+input.invalid {
+  border: 2px solid red;
+  outline: none;
+}
+
+input.valid {
+  border: 2px solid green;
+  outline: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 10px;
 }
